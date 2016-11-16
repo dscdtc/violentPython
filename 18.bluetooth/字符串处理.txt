@@ -1,0 +1,158 @@
+去掉行首行尾的指定字符：
+&gt;&gt;&gt; s.strip().lstrip().rstrip(',')
+s为需要处理的字符串，strip()表示去掉行首行尾
+lstrip()表示去掉行首，rstrip()表示去掉行尾
+———————————————–
+截取字符串
+str = ’0123456789′
+print str[0:3] #截取第一位到第三位的字符
+print str[:] #截取字符串的全部字符
+print str[6:] #截取第七个字符到结尾
+print str[:-3] #截取从头开始到倒数第三个字符之前
+print str[2] #截取第三个字符
+print str[-1] #截取倒数第一个字符
+print str[::-1] #创造一个与原字符串顺序相反的字符串
+print str[-3:-1] #截取倒数第三位与倒数第一位之前的字符
+print str[-3:] #截取倒数第三位到结尾
+print str[:-5:-3] #逆序截取，具体啥意思没搞明白？
+##=====
+import string
+string.replace(s,”asd”,”",1)
+import re
+re.sub(“^asd”,”",s)
+分割字符串
+s.split(‘,’)
+———————————————–
+复制字符串
+#strcpy(sStr1,sStr2)
+&gt;&gt;&gt; sStr1 = 'strcpy'
+&gt;&gt;&gt; sStr2 = sStr1
+&gt;&gt;&gt; sStr1 = 'strcpy2'
+&gt;&gt;&gt; print sStr2
+strcpy
+————————————————
+连接字符串
+#strcat(sStr1,sStr2)
+&gt;&gt;&gt; sStr1 = 'strcat'
+&gt;&gt;&gt; sStr2 = 'append'
+&gt;&gt;&gt; sStr1 += sStr2
+&gt;&gt;&gt; print sStr1
+strcatappend
+————————————————
+查找字符
+#strchr(sStr1,sStr2)
+#返回字符所在位置，未找到会报错ValueError
+&gt;&gt;&gt; sStr1 = 'strchr'
+&gt;&gt;&gt; sStr2 = 's'
+&gt;&gt;&gt; nPos = sStr1.index(sStr2)
+&gt;&gt;&gt; print nPos
+0
+————————————————
+比较字符串
+#strcmp(sStr1,sStr2)
+&gt;&gt;&gt; sStr1 = 'strchr'
+&gt;&gt;&gt; sStr2 = 'strch'
+&gt;&gt;&gt; print cmp(sStr1,sStr2)
+1
+————————————————
+将字符串中的大小写转换
+#strlwr(sStr1)
+>>> sStr1 = sStr1.upper()
+#sStr1 = sStr1.lower()
+>>> print ‘JUST TO TEST IT’.capitalize()
+#字符串的首字母转换成大写， 其余转换成小写
+Just to test it
+>>> print ‘JUST TO TEST IT’.title()
+#字符串中所有单词的首字母转换成大写， 其余转换成小写
+Just To Test It
+##======判断字符串大小写函数：
+>>> print ‘JUST TO TEST IT’.isupper()
+True
+>>> print ‘JUST TO TEST IT’.islower()
+False
+>>> print ‘JUST TO TEST IT’.istitle()
+False
+#======python没有提供iscapitalize方法, 那就自己写一个吧：
+import string
+ def iscapitalize(str):
+ def containLetter():
+ return len(string.letters) != len(string.letters.translate(string.maketrans('', ''), str))
+ return str == str.capitalize() and containLetter()
+##其中定义containLetter()方法是为了使str是空串和不含字母的字符串也返回False;
+##上面用到了string.maketrans方法：
+>>> map = string.maketrans(’123′, ‘abc’) #建立映射表，将字符串中含有的’1′,’2′,’3′替换为’a',’b',’c’
+>>> print ’123456′.translate(map) #用创建的映射表map转换字符串
+abc456
+>>> print ’123456′.translate(map, ’478′) #用创建的映射表map转换字符串, 然后再根据后面字符串’478′, 去除相同字符
+abc56
+————————————————-
+追加指定长度的字符串
+#strncat(sStr1,sStr2,n)
+sStr1 = ’12345′
+sStr2 = ‘abcdef’
+n = 3
+sStr1 += sStr2[0:n]
+print sStr1
+————————————————–
+将字符串前n个字符替换为指定的字符
+#strnset(sStr1,ch,n)
+sStr1 = ’12345′
+ch = ‘r’
+n = 3
+sStr1 = n * ch + sStr1[3:]
+print sStr1
+————————————————–
+扫描字符串
+#strpbrk(sStr1,sStr2)
+sStr1 = ‘cekjgdklab’
+sStr2 = ‘gka’
+nPos = -1
+for c in sStr1:
+if c in sStr2:
+nPos = sStr1.index(c)
+break
+print nPos
+—————————————————
+翻转字符串
+#strrev(sStr1)
+sStr1 = ‘abcdefg’
+sStr1 = sStr1[::-1]
+print sStr1
+————————————————–
+查找字符串
+#strstr(sStr1,sStr2)
+sStr1 = ‘abcdefg’
+sStr2 = ‘cde’
+print sStr1.find(sStr2)
+分割字符串
+#strtok(sStr1,sStr2)
+sStr1 = ‘ab,cde,fgh,ijk’
+sStr2 = ‘,’
+sStr1 = sStr1[sStr1.find(sStr2) + 1:]
+print sStr1
+#或者
+s = ‘ab,cde,fgh,ijk’
+print(s.split(‘,’))
+———————————————–
+连接字符串
+delimiter = ‘,’
+mylist = ['Brazil', 'Russia', 'India', 'China']
+print delimiter.join(mylist)
+PHP 中 addslashes 的实现
+ef addslashes(s):
+ d = {'&quot;':'\\&quot;', &quot;'&quot;:&quot;\\'&quot;, &quot;&#92;&#48;&quot;:&quot;\\&#92;&#48;&quot;, &quot;\\&quot;:&quot;\\\\&quot;}
+ return ''.join(d.get(c, c) for c in s)
+
+s = &quot;John 'Johny' Doe (a.k.a. \&quot;Super Joe\&quot;)\\&#92;&#48;&quot;
+print s
+print addslashes(s)
+———————————————-
+只显示字母与数字
+def OnlyCharNum(s,oth=”):
+s2 = s.lower();
+fomart = ‘abcdefghijklmnopqrstuvwxyz0123456789′
+for c in s2:
+if not c in fomart:
+s = s.replace(c,”);
+return s;
+print(OnlyStr(“a000 aa-b”))

